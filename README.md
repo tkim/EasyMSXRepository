@@ -1,0 +1,13 @@
+# EasyMSXRepository
+
+EasyMSX Documentation:
+
+http://easymsx.readthedocs.io/en/latest/
+
+EMSX API Programmers Guide:
+
+http://emsx-api-doc.readthedocs.io/en/latest/index.html
+
+EMSX API Code Samples:
+
+https://github.com/tkim/emsx_api_repository
