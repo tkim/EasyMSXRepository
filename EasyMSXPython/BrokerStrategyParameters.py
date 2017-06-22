@@ -1,5 +1,5 @@
 # BrokerStrategyParameters.py
-
+from __future__ import print_function
 import blpapi
 from BrokerStrategyParameter import BrokerStrategyParameter
 
@@ -22,7 +22,7 @@ class BrokerStrategyParameters:
         request.set("EMSX_BROKER", self.brokerStrategy.parent.broker.name)
         request.set("EMSX_STRATEGY", self.brokerStrategy.name)
         request.set("EMSX_ASSET_CLASS",self.brokerStrategy.parent.broker.assetClass)
-        #print "Sending request: " + str(request)
+        #print("Sending request: " + str(request))
         
         self.brokerStrategy.parent.broker.parent.easyMSX.submitRequest(request, self.processMessage)
 
@@ -32,7 +32,7 @@ class BrokerStrategyParameters:
             errorCode = msg.getElementAsInteger("ERROR_CODE")
             errorMessage = msg.getElementAsString("ERROR_MESSAGE")
             if ":2" not in errorMessage: # fix for issue with Strategies having 0 parameters
-                print "GetBrokerStrategyInfoWithAssetClass >> ERROR CODE: %d\tERROR MESSAGE: %s" % (errorCode,errorMessage)
+                print("GetBrokerStrategyInfoWithAssetClass >> ERROR CODE: %d\tERROR MESSAGE: %s" % (errorCode,errorMessage))
 
         elif msg.messageType() == GET_BROKER_STRATEGY_INFO:
             

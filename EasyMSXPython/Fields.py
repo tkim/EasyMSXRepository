@@ -1,5 +1,5 @@
 # Fields.py
-
+from __future__ import print_function
 from Field import Field
 
 class Fields:
@@ -49,11 +49,11 @@ class Fields:
                 
                 fd.setValue(f.getValueAsString())
 
-                #print "loaded field: " + fd.name() + "\tValue: " + fd.value()
+                #print("loaded field: " + fd.name() + "\tValue: " + fd.value())
                 
                 fc = fd.getFieldChanged()
                 if fc is not None:
-                    #print "Added field to fieldChanges list"
+                    #print("Added field to fieldChanges list")
                     self.fieldChanges.append(fc)
                     
         

@@ -5,7 +5,7 @@ class Team:
     def __init__(self, parent, name):
         self.name= str(name)
         self.parent=parent
-#        print "Creating team: " + self.name
+#        print("Creating team: " + self.name)
         
     def select(self):
         self.parent.easyMSX.setTeam(self)
