@@ -107,13 +107,13 @@ class EasyMSX:
         #self.session = blpapi.Session(options=self.sessionOptions)
         
         if not self.session.start():
-            raise ("Failed to start session.")
+            raise Exception("Failed to start session.")
             return
     
     def initializeService(self):
         if not self.session.openService(self.emsxServiceName):
             self.session.stop()
-            raise ("Unable to open EMSX service")
+            raise Exception("Unable to open EMSX service")
 
         self.emsxService = self.session.getService(self.emsxServiceName)
         
