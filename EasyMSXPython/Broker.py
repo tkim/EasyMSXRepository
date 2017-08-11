@@ -1,11 +1,11 @@
 # Broker.py
-
+from __future__ import print_function
 from BrokerStrategies import BrokerStrategies
 
 class Broker:
 
     def __init__(self, parent, name, assetClass):
-        #print "Loading new broker: " + str(name)
+        #print("Loading new broker: " + str(name))
         self.name = str(name)
         self.parent = parent
         self.assetClass = assetClass

@@ -1,5 +1,5 @@
 # BrokerStrategies.py
-
+from __future__ import print_function
 import blpapi
 from BrokerStrategy import BrokerStrategy
 
@@ -27,7 +27,7 @@ class BrokerStrategies:
         if msg.messageType() == ERROR_INFO:
             errorCode = msg.getElementAsInteger("ERROR_CODE")
             errorMessage = msg.getElementAsString("ERROR_MESSAGE")
-            print "GetTeams >> ERROR CODE: %d\tERROR MESSAGE: %s" % (errorCode,errorMessage)
+            print("GetTeams >> ERROR CODE: %d\tERROR MESSAGE: %s" % (errorCode,errorMessage))
 
         elif msg.messageType() == GET_BROKER_STRATEGIES:
             

@@ -1,5 +1,5 @@
 # EasyMSX.py
-
+from __future__ import print_function
 import blpapi
 import sys
 from SchemaFieldDefinition import SchemaFieldDefinition
@@ -107,24 +107,24 @@ class EasyMSX:
         #self.session = blpapi.Session(options=self.sessionOptions)
         
         if not self.session.start():
-            raise ("Failed to start session.")
+            raise Exception("Failed to start session.")
             return
     
     def initializeService(self):
         if not self.session.openService(self.emsxServiceName):
             self.session.stop()
-            raise ("Unable to open EMSX service")
+            raise Exception("Unable to open EMSX service")
 
         self.emsxService = self.session.getService(self.emsxServiceName)
         
     def initializeFieldData(self):
         
-#        print "Initializing field data..."
+#        print("Initializing field data...")
 
         self.orderRouteFields = self.emsxService.getEventDefinition("OrderRouteFields");
         typeDef = self.orderRouteFields.typeDefinition()
         
-#        print "Total number of fields: %d" % (typeDef.numElementDefinitions())
+#        print("Total number of fields: %d" % (typeDef.numElementDefinitions()))
         
         for i in range(0, typeDef.numElementDefinitions()):
             
@@ -146,13 +146,13 @@ class EasyMSX:
             
             if f.isOrderField(): 
                 self.orderFields.append(f)
-                #print "Added order field: " + f.name
+                #print("Added order field: " + f.name)
             if f.isRouteField(): 
                 self.routeFields.append(f)
-                #print "Added route field: " + f.name
+                #print("Added route field: " + f.name)
 
             
-            #print "Adding field: " + f.name + "\tStatus: " + str(f.status) + "\tType: " + f.type
+            #print("Adding field: " + f.name + "\tStatus: " + str(f.status) + "\tType: " + f.type)
             
     def initializeTeams(self):
         self.teams = Teams(self)
@@ -177,10 +177,10 @@ class EasyMSX:
         try:
             cID = self.session.sendRequest(request=req)
             self.requestMessageHandlers[cID.value()] = messageHandler
-#            print "Request submitted (" + str(cID)  + "): \n" + str(req)
+#            print("Request submitted (" + str(cID)  + "): \n" + str(req))
                 
-        except Exception, err:
-            print "EasyMSX >>  Error sending request: " + str(err)
+        except Exception as err:
+            print("EasyMSX >>  Error sending request: " + str(err))
             
 
     def subscribe(self, topic, messageHandler):
@@ -191,15 +191,15 @@ class EasyMSX:
             subscriptions.add(topic=topic, correlationId=cID)
             self.session.subscribe(subscriptions)
             self.subscriptionMessageHandlers[cID.value()] = messageHandler
-            #print "Request submitted (" + str(cID)  + "): \n" + str(topic)
+            #print("Request submitted (" + str(cID)  + "): \n" + str(topic))
             
-        except Exception, err:
-            print "EasyMSX >>  Error subscribing to topic: " + str(err)
+        except Exception as err:
+            print("EasyMSX >>  Error subscribing to topic: " + str(err))
             
 
     def processEvent(self, event, session):
         
-#        print "Processing Event (" + str(event.eventType()) + ")"
+#        print("Processing Event (" + str(event.eventType()) + ")")
         
         if event.eventType() == blpapi.Event.ADMIN:
             self.processAdminEvent(event, session)
@@ -226,93 +226,93 @@ class EasyMSX:
 
     def processAdminEvent(self,event,session):
         
-#        print "Processing ADMIN event..."
+#        print("Processing ADMIN event...")
 
         for msg in event:
             if msg.messageType() == SLOW_CONSUMER_WARNING:
-                print "Slow Consumer Warning"
+                print("Slow Consumer Warning")
             elif msg.messageType() == SLOW_CONSUMER_WARNING_CLEARED:
-                print "Slow Consumer Warning cleared"
+                print("Slow Consumer Warning cleared")
         
 
     def processSessionStatusEvent(self,event,session):
 
-#        print "Processing SESSION_STATUS event..."
+#        print("Processing SESSION_STATUS event...")
 
         for msg in event:
             if msg.messageType() == SESSION_STARTED:
-#                print "Session Started"
+#                print("Session Started")
                 pass
             elif msg.messageType() == SESSION_STARTUP_FAILURE:
-                print "Session Startup Failure"
+                print("Session Startup Failure")
             elif msg.messageType() == SESSION_TERMINATED:
-#                print "Session Terminated"
+#                print("Session Terminated")
                 pass
             elif msg.messageType() == SESSION_CONNECTION_UP:
-#                print "Session Connection Up"
+#                print("Session Connection Up")
                 pass
             elif msg.messageType() == SESSION_CONNECTION_DOWN:
-#                print "Session Connection Down"
+#                print("Session Connection Down")
                 pass
         
 
     def processServiceStatusEvent(self,event,session):
         
- #       print "Processing SERVICE_STATUS event..."
+ #       print("Processing SERVICE_STATUS event...")
 
         for msg in event:
             if msg.messageType() == SERVICE_OPENED:
-#                print "Service Opened"
+#                print("Service Opened")
                 pass
             elif msg.messageType() == SERVICE_OPEN_FAILURE:
-                print "Service Open Failure"
+                print("Service Open Failure")
 
         
     def processSubscriptionDataEvent(self,event,session):
         
-#        print "Processing SUBSCRIPTION_DATA event..."
+#        print("Processing SUBSCRIPTION_DATA event...")
 
         for msg in event:
             cID = msg.correlationIds()[0].value()
             if cID in self.subscriptionMessageHandlers:
                 self.subscriptionMessageHandlers[cID](msg)
             else:
-                print "Unrecognised correlation ID in subscription data event. No event handler can be found for cID: " + str(cID)
+                print("Unrecognised correlation ID in subscription data event. No event handler can be found for cID: " + str(cID))
         
         
     def processSubscriptionStatusEvent(self,event,session):
         
-#        print "Processing SUBSCRIPTION_STATUS event..."
+#        print("Processing SUBSCRIPTION_STATUS event...")
 
         for msg in event:
             cID = msg.correlationIds()[0].value()
             if cID in self.subscriptionMessageHandlers:
                 self.subscriptionMessageHandlers[cID](msg)
             else:
-                print "Unrecognised correlation ID in subscription status event. No event handler can be found for cID: " + str(cID) 
+                print("Unrecognised correlation ID in subscription status event. No event handler can be found for cID: " + str(cID)) 
         
 
     def processResponseEvent(self,event,session):
         
-#        print "Processing RESPONSE event..."
+#        print("Processing RESPONSE event...")
         
         for msg in event:
             cID = msg.correlationIds()[0].value()
-#            print "Received cID: " + str(cID)
+#            print("Received cID: " + str(cID))
             if cID in self.requestMessageHandlers:
                 handler = self.requestMessageHandlers[cID]
                 handler(msg)
                 del self.requestMessageHandlers[cID]
             else:
-                print "Unrecognised correlation ID in response event. No event handler can be found for cID: " + str(cID) 
+                print("Unrecognised correlation ID in response event. No event handler can be found for cID: " + str(cID)) 
         
 
     def processMiscEvents(self,event,session):
         
-#        print "Processing unknown event..."
+#        print("Processing unknown event...")
 
         for msg in event:
-            print "Misc Event: " + msg
+            print("Misc Event: " + msg)
 
     def addNotificationHandler(self,handler):
         self.notificationHandlers.append(handler)

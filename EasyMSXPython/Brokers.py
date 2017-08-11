@@ -1,5 +1,5 @@
 # Brokers.py
-
+from __future__ import print_function
 import blpapi
 from Broker import Broker
 
@@ -45,7 +45,7 @@ class BrokerMessageHandler:
         if msg.messageType() == ERROR_INFO:
             errorCode = msg.getElementAsInteger("ERROR_CODE")
             errorMessage = msg.getElementAsString("ERROR_MESSAGE")
-            print "GetBrokers >> ERROR CODE: %d\tERROR MESSAGE: %s" % (errorCode,errorMessage)
+            print("GetBrokers >> ERROR CODE: %d\tERROR MESSAGE: %s" % (errorCode,errorMessage))
 
         elif msg.messageType() == GET_BROKERS:
             
