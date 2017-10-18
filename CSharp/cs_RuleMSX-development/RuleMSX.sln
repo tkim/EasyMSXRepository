@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RuleMSX", "RuleMSX\RuleMSX.csproj", "{787BFCFA-A2E8-44C5-A373-149305377E7C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RuleMSXNUnitTest", "RuleMSX.NUnitTest\RuleMSXNUnitTest.csproj", "{5402F3EC-4E00-455B-9636-C07CF76DF5B9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RuleMSXNUnitIntegrationTest", "RuleMSXNUnitIntegrationTest\RuleMSXNUnitIntegrationTest.csproj", "{B95EF171-916B-4925-8933-738BECCAEF76}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{787BFCFA-A2E8-44C5-A373-149305377E7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{787BFCFA-A2E8-44C5-A373-149305377E7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{787BFCFA-A2E8-44C5-A373-149305377E7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{787BFCFA-A2E8-44C5-A373-149305377E7C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5402F3EC-4E00-455B-9636-C07CF76DF5B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5402F3EC-4E00-455B-9636-C07CF76DF5B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5402F3EC-4E00-455B-9636-C07CF76DF5B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5402F3EC-4E00-455B-9636-C07CF76DF5B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B95EF171-916B-4925-8933-738BECCAEF76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B95EF171-916B-4925-8933-738BECCAEF76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B95EF171-916B-4925-8933-738BECCAEF76}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B95EF171-916B-4925-8933-738BECCAEF76}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
