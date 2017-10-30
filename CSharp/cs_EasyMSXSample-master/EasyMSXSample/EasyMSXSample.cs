@@ -33,7 +33,7 @@ namespace com.bloomberg.test {
 
 	    private void run(string[] args) {
 	
-		    Log.logLevel = Log.LogLevels.DETAILED;
+		    Log.logLevel = Log.LogLevels.NONE;
 
 		    System.Console.WriteLine("Initializing EMSXAPI ");
 
@@ -46,12 +46,13 @@ namespace com.bloomberg.test {
 		
 		    emsx.orders.addNotificationHandler(this);
 		    emsx.routes.addNotificationHandler(this);
-		
-		    foreach(Team t in emsx.teams) {
-			    System.Console.WriteLine("Team: " + t.name);
-		    }
-	
-		    foreach(Broker b in emsx.brokers) {
+
+            //foreach(Team t in emsx.teams) {
+            //    System.Console.WriteLine("Team: " + t.name);
+            //}
+
+            /*
+            foreach(Broker b in emsx.brokers) {
 			    System.Console.WriteLine("Broker: " + b.name);
 			
 			    System.Console.WriteLine("\tAsset Class: " + b.assetClass.ToString());
@@ -64,8 +65,11 @@ namespace com.bloomberg.test {
 				    }
 			    }
 		    }
-		
-		    System.Console.WriteLine("Existing Orders:");
+		    */
+
+            emsx.start();
+
+	        System.Console.WriteLine("Existing Orders:");
 		
 		    foreach(Order o in emsx.orders) {
 			    System.Console.WriteLine("\tSequence: " + o.field("EMSX_SEQUENCE").value() + "\tStatus: " + o.field("EMSX_STATUS").value() + "\t Ticker: " + o.field("EMSX_TICKER").value() + "\t Amount: " + o.field("EMSX_AMOUNT").value());
