@@ -1,5 +1,5 @@
 # Field.py
-from __future__ import print_function
+
 from FieldChange import FieldChange
 
 class Field:
@@ -30,5 +30,6 @@ class Field:
             fc = FieldChange(self,self.__old_value,self.__current_value)
             return fc
         else:
-            ##print("Field NOT changed   Old: " + self.__old_value + "\t New: " + self.__current_value) 
+#            print("Field NOT changed   Old: " + self.__old_value + "\t New: " + self.__current_value) 
             return None
+        

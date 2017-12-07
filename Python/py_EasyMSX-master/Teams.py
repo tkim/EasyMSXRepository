@@ -1,5 +1,5 @@
 # Teams.py
-from __future__ import print_function
+
 import blpapi
 from Team import Team
 

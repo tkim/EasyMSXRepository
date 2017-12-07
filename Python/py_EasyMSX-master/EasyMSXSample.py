@@ -3,7 +3,6 @@ Created on 22 May 2017
 
 @author: rclegg2
 '''
-from __future__ import print_function
 from EasyMSX import EasyMSX
 
 
@@ -30,12 +29,10 @@ class MyApp:
                 print("\tStrategy: " + s.name)
                 for p in s.parameters:
                     print("\t\tParameter: " + p.name)
-                    
     
         self.easyMSX.orders.addNotificationHandler(self.processNotification)
         self.easyMSX.routes.addNotificationHandler(self.processNotification)
 
-        
         self.easyMSX.start()
              
         while True:

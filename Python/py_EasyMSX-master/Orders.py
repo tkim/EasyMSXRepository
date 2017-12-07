@@ -52,18 +52,18 @@ class Orders:
     def processMessage(self, msg):
 
         if msg.messageType() == SUBSCRIPTION_STARTED:
-            #print("Order Subscription Started...")
+#            print("Order Subscription Started...")
             return
 
         eventStatus = msg.getElementAsInteger("EVENT_STATUS")
         
         if eventStatus==1:      # Heartbeat
-            #print("Order >> Heartbeat")
+#            print("Order >> Heartbeat")
             pass
         
         elif eventStatus==4:    # Initial paint
             seqNo = msg.getElementAsInteger("EMSX_SEQUENCE")
-            #print("Order >> Event(4) >> SeqNo: " + str(seqNo))
+#            print("Order >> Event(4) >> SeqNo: " + str(seqNo))
             o = self.getBySequenceNo(seqNo)
         
             if o is None:
@@ -75,7 +75,7 @@ class Orders:
         
         elif eventStatus==6:    # New order
             seqNo = msg.getElementAsInteger("EMSX_SEQUENCE")
-            #print("Order >> Event(6) >> SeqNo: " + str(seqNo))
+#            print("Order >> Event(6) >> SeqNo: " + str(seqNo))
             o = self.getBySequenceNo(seqNo)
         
             if o is None:
@@ -87,11 +87,11 @@ class Orders:
         
         elif eventStatus==7:    # Update order
             seqNo = msg.getElementAsInteger("EMSX_SEQUENCE")
-            #print("Order >> Event(7) >> SeqNo: " + str(seqNo))
+#            print("Order >> Event(7) >> SeqNo: " + str(seqNo))
             o = self.getBySequenceNo(seqNo)
         
             if o is None:
-                #print("WARNING >> update received for unknown order")
+#                print("WARNING >> update received for unknown order")
                 o = self.createOrder(seqNo)
         
             o.fields.populateFields(msg, True)
@@ -100,7 +100,7 @@ class Orders:
         elif eventStatus==8:    # Delete/Expired order
             
             seqNo = msg.getElementAsInteger("EMSX_SEQUENCE")
-            #print("Order >> Event(8) >> SeqNo: " + str(seqNo))
+#            print("Order >> Event(8) >> SeqNo: " + str(seqNo))
             o = self.getBySequenceNo(seqNo)
             if o is None:
                 o = self.createOrder(seqNo)
@@ -111,7 +111,7 @@ class Orders:
             o.notify(Notification(Notification.NotificationCategory.ORDER, Notification.NotificationType.DELETE, o, o.fields.getFieldChanges()))                     
             
         elif eventStatus==11:    # End of init paint
-            #print("End of ORDER INIT_PAINT")
+#            print("End of ORDER INIT_PAINT")
             self.initialized=True
             
     def addNotificationHandler(self,handler):

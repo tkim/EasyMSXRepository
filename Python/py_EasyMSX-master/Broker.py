@@ -1,5 +1,5 @@
 # Broker.py
-from __future__ import print_function
+
 from BrokerStrategies import BrokerStrategies
 
 class Broker:

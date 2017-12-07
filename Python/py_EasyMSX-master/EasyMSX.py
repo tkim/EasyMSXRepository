@@ -1,7 +1,6 @@
 # EasyMSX.py
-from __future__ import print_function
+
 import blpapi
-import sys
 from SchemaFieldDefinition import SchemaFieldDefinition
 from Teams import Teams
 from Brokers import Brokers
@@ -107,13 +106,13 @@ class EasyMSX:
         #self.session = blpapi.Session(options=self.sessionOptions)
         
         if not self.session.start():
-            raise Exception("Failed to start session.")
+            raise ("Failed to start session.")
             return
     
     def initializeService(self):
         if not self.session.openService(self.emsxServiceName):
             self.session.stop()
-            raise Exception("Unable to open EMSX service")
+            raise ("Unable to open EMSX service")
 
         self.emsxService = self.session.getService(self.emsxServiceName)
         
@@ -146,13 +145,13 @@ class EasyMSX:
             
             if f.isOrderField(): 
                 self.orderFields.append(f)
-                #print("Added order field: " + f.name)
+#                print("Added order field: " + f.name)
             if f.isRouteField(): 
                 self.routeFields.append(f)
-                #print("Added route field: " + f.name)
+#                print("Added route field: " + f.name)
 
             
-            #print("Adding field: " + f.name + "\tStatus: " + str(f.status) + "\tType: " + f.type)
+#            print("Adding field: " + f.name + "\tStatus: " + str(f.status) + "\tType: " + f.type)
             
     def initializeTeams(self):
         self.teams = Teams(self)
@@ -191,7 +190,7 @@ class EasyMSX:
             subscriptions.add(topic=topic, correlationId=cID)
             self.session.subscribe(subscriptions)
             self.subscriptionMessageHandlers[cID.value()] = messageHandler
-            #print("Request submitted (" + str(cID)  + "): \n" + str(topic))
+#            print("Request submitted (" + str(cID)  + "): \n" + str(topic))
             
         except Exception as err:
             print("EasyMSX >>  Error subscribing to topic: " + str(err))
@@ -258,7 +257,7 @@ class EasyMSX:
 
     def processServiceStatusEvent(self,event,session):
         
- #       print("Processing SERVICE_STATUS event...")
+#       print("Processing SERVICE_STATUS event...")
 
         for msg in event:
             if msg.messageType() == SERVICE_OPENED:

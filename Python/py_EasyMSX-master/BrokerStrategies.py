@@ -1,5 +1,5 @@
 # BrokerStrategies.py
-from __future__ import print_function
+
 import blpapi
 from BrokerStrategy import BrokerStrategy
 

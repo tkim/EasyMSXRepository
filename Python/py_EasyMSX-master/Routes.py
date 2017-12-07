@@ -50,19 +50,19 @@ class Routes:
     def processMessage(self, msg):
 
         if msg.messageType() == SUBSCRIPTION_STARTED:
-            #print("Route Subscription Started...")
+#            print("Route Subscription Started...")
             return
 
         eventStatus = msg.getElementAsInteger("EVENT_STATUS")
         
         if eventStatus==1:      # Heartbeat
-            #print("Route >> Heartbeat")
+#            print("Route >> Heartbeat")
             pass
         
         elif eventStatus==4:    # Initial paint
             seqNo = msg.getElementAsInteger("EMSX_SEQUENCE")
             routeId = msg.getElementAsInteger("EMSX_ROUTE_ID")
-            #print("Route >> Event(4) >> SeqNo: " + str(seqNo) + "\tRouteId: " + str(routeId))
+#            print("Route >> Event(4) >> SeqNo: " + str(seqNo) + "\tRouteId: " + str(routeId))
             r = self.getBySequenceNoAndId(seqNo, routeId)
 
             if r is None:
@@ -75,7 +75,7 @@ class Routes:
         elif eventStatus==6:    # New order
             seqNo = msg.getElementAsInteger("EMSX_SEQUENCE")
             routeId = msg.getElementAsInteger("EMSX_ROUTE_ID")
-            #print("Route >> Event(6) >> SeqNo: " + str(seqNo) + "\tRouteId: " + str(routeId))
+#            print("Route >> Event(4) >> SeqNo: " + str(seqNo) + "\tRouteId: " + str(routeId))
             r = self.getBySequenceNoAndId(seqNo, routeId)
         
             if r is None:
@@ -88,11 +88,11 @@ class Routes:
         elif eventStatus==7:    # Update order
             seqNo = msg.getElementAsInteger("EMSX_SEQUENCE")
             routeId = msg.getElementAsInteger("EMSX_ROUTE_ID")
-            #print("Route >> Event(7) >> SeqNo: " + str(seqNo) + "\tRouteId: " + str(routeId))
+#            print("Route >> Event(4) >> SeqNo: " + str(seqNo) + "\tRouteId: " + str(routeId))
             r = self.getBySequenceNoAndId(seqNo, routeId)
         
             if r is None:
-                #print("WARNING >> update received for unknown order")
+#                print("WARNING >> update received for unknown order")
                 r = self.createRoute(seqNo, routeId)
         
             r.fields.populateFields(msg, True)
@@ -102,7 +102,7 @@ class Routes:
         elif eventStatus==8:    # Delete/Expired order
             seqNo = msg.getElementAsInteger("EMSX_SEQUENCE")
             routeId = msg.getElementAsInteger("EMSX_ROUTE_ID")
-            #print("Route >> Event(8) >> SeqNo: " + str(seqNo) + "\tRouteId: " + str(routeId))
+#            print("Route >> Event(4) >> SeqNo: " + str(seqNo) + "\tRouteId: " + str(routeId))
             r = self.getBySequenceNoAndId(seqNo, routeId)
 
             if r is None:
@@ -114,7 +114,7 @@ class Routes:
             r.notify(Notification(Notification.NotificationCategory.ROUTE, Notification.NotificationType.DELETE, r, r.fields.getFieldChanges()))                     
             
         elif eventStatus==11:    # End of init paint
-            #print("End of ROUTE INIT_PAINT")
+#            print("End of ROUTE INIT_PAINT")
             self.initialized=True
             
 
