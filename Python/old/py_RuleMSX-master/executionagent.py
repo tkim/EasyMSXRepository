@@ -23,12 +23,8 @@ class ExecutionAgent:
             
         def run(self):
             
-            iterationCount = 0
             while(self.running):
-                
-                #print("WorkingSet iteration %d" % (iterationCount))
-                iterationCount=iterationCount+1
-                
+
                 with self.lock:
                     while self.execAgent.dataSetQueue.qsize() >0:
                         ds = self.execAgent.dataSetQueue.get()
@@ -44,29 +40,21 @@ class ExecutionAgent:
                     for wr in self.openSet:
                         res = True
                         for e in wr.evaluators:
-                            if not e.evaluate(wr.dataSet): 
-                                res = False
-                                break
-                            
+                            if not e.evaluate(wr.dataSet): res = False
+                        
                         if res:
-                            for x in wr.executors:
+                            for x in e.executors:
                                 x.execute(wr.dataSet)
                         
                 
         def ingestDataSet(self,dataSet):
                 
-            #for k,r in self.execAgent.ruleSet.rules.items():
-            for r in self.execAgent.ruleSet.rules.values():
-                wr = WorkingRule(r,dataSet, self)
+            for k,r in self.execAgent.ruleSet.rules.items():
+                wr = WorkingRule(r,dataSet)
                 self.workingSet.append(wr)
-                self.enqueueWorkingRule(wr)
+                self.openSet.append(wr)
             
     
-        def enqueueWorkingRule(self,wr):
-            # think about ancestry and descendant rules...only insert if not already in the queue
-            if wr not in self.openSetQueue:
-                self.openSetQueue.append(wr)
-
     def __init__(self,ruleSet, dataSet=None):
         
         self.ruleSet = ruleSet
@@ -91,5 +79,4 @@ class ExecutionAgent:
     def addDataSet(self,dataSet):
         
         self.dataSetQueue.put(dataSet)
-        
         

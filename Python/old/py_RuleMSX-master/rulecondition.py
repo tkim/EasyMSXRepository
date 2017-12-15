@@ -3,6 +3,7 @@ Created on 28 Nov 2017
 
 @author: metz
 '''
+from datapoint import DataPoint
 
 class RuleCondition:
     
@@ -16,9 +17,10 @@ class RuleCondition:
 
         self.name = name
         self.evaluator = evaluator
-        self.evaluator.setCondition(self)
-        
-        
+        self.dependencies = []
     
+    def addDependentDataPoint(self,dataPoint):
+
+        self.dependencies.append(dataPoint)
         
         

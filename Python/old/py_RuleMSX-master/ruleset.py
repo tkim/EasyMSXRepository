@@ -16,10 +16,9 @@ class RuleSet:
         self.executionAgent = None
 
     def stop(self):
-        if not self.executionAgent == None:
-            self.executionAgent.stop()
         return True
-        
+    
+    
     def addRule(self,name):
         
         if(name is None or name == ""):

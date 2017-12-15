@@ -8,7 +8,7 @@ class DataPointSource:
     
     def __init__(self):
         self.dataPoint  = None
-        self.ruleEventHandlers = []
+        self.associatedWorkingRules = []
         self.isStale = True
     
     
@@ -17,8 +17,11 @@ class DataPointSource:
         
     
     def getDataPoint(self):
-        return self.dataPoint
-    
+        try:
+            return self.dataPoint
+        except:
+            self.dataPoint=None
+            return self.dataPoint
     
     def getValue(self):
         raise NotImplementedError()
@@ -26,10 +29,16 @@ class DataPointSource:
     
     def setStale(self):
         self.isStale = True
-        for handler in self.ruleEventHandlers:
-            handler.handleRuleEvent()
+        try:
+            for ar in self.associatedWorkingRules:
+                ar.enqueueWorkingRule()
+        except:
+            #ignore
+            self.associatedWorkingRules = []
     
-    
-    def addRuleEventHandler(self,handler):
-        self.ruleEventHandlers.append(handler)
-        
+    def associateWorkingRule(self,workingRule):
+        try:
+            self.associatedWorkingRules.append(workingRule)
+        except:
+            self.associatedWorkingRules = []
+            self.associatedWorkingRules.append(workingRule)
