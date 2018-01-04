@@ -40,7 +40,7 @@ class Field:
         
 
     def send_notifications(self,field_change_list):
-        print("Send notifications...")
+        #print("Send notifications...")
         if len(self.notification_handlers) > 0:
             n = Notification(self.parent.owner.get_notification_category(), Notification.NotificationType.FIELD, self.parent.owner, [self.get_field_changed()])                     
 
