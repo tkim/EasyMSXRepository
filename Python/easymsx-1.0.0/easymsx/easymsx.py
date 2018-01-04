@@ -1,6 +1,7 @@
 # easymsx.py
 
 import blpapi
+from enum import Enum
 from .schemafielddefinition import SchemaFieldDefinition
 from .teams import Teams
 from .brokers import Brokers
@@ -31,33 +32,10 @@ SUBSCRIPTION_TERMINATED         = blpapi.Name("SubscriptionTerminated")
 
 class EasyMSX:
     
-    class Environment:
+    class Environment(Enum):
         PRODUCTION=0
         BETA=1
         
-    class NotificationCategory:
-        ORDER=0
-        ROUTE=1
-        ADMIN=2
-        
-        __list = ["ORDER", "ROUTE", "ADMIN"]
-        @classmethod
-        def as_text(self, v):
-            return (self.__list[v])
-        
-    class NotificationType:
-        NEW=0
-        INITIALPAINT=1
-        UPDATE=2
-        DELETE=3
-        CANCEL=4
-        ERROR=5
- 
-        __list = ["NEW","INITIALPAINT","UPDATE","DELETE","CANCEL","ERROR"]       
-        @classmethod
-        def as_text(self,v):
-            return (self.__list[v])
-
     next_cor_id=1
         
     def __init__(self, env=Environment.BETA, host="localhost",port=8194):
@@ -162,6 +140,9 @@ class EasyMSX:
         self.initialize_orders()
         self.initialize_routes()
         
+    def stop(self):
+        self.session.stop()
+
     def initialize_orders(self):
         self.orders.subscribe()
         

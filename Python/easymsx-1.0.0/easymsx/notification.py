@@ -1,13 +1,14 @@
 # notification.py
+from enum import Enum
 
 class Notification:
 
-    class NotificationCategory:
+    class NotificationCategory(Enum):
         ORDER=0
         ROUTE=1
         ADMIN=2
         
-    class NotificationType:
+    class NotificationType(Enum):
         NEW=0
         INITIALPAINT=1
         UPDATE=2
@@ -15,7 +16,7 @@ class Notification:
         CANCEL=4
         ERROR=5
         FIELD=6
-        
+
     def __init__(self,notification_category,notification_type,notification_source,field_changes=[],error_code=0,error_message=""):
         self.category = notification_category
         self.type = notification_type
