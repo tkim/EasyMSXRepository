@@ -49,6 +49,20 @@ class RuleMSXDemo:
             #print("Evaluated StringEqualityEvaluator for DataPoint: " + self.datapoint_name + " of DataSet: " + dataset.name + " - Returning: " + str(dp_value==self.target_value))
             return dp_value==self.target_value
         
+    class ValueChangeEvaluator(RuleEvaluator):
+        
+        def __init__(self, datapoint_name, prev_datapoint_name):
+            
+            self.datapoint_name = datapoint_name
+            self.prev_datapoint_name = prev_datapoint_name
+            super().add_dependent_datapoint_name(datapoint_name)
+            super().add_dependent_datapoint_name(prev_datapoint_name)
+        
+        def evaluate(self,dataset):
+            curr_value = dataset.datapoints[self.datapoint_name].get_value()
+            prev_value = dataset.datapoints[self.prev_datapoint_name].get_value()
+            return curr_value!=prev_value
+
     class SendMessageWithDataPointValue(Action):
         
         def __init__(self,msg_str, datapoint_name1, datapoint_name2=None):
@@ -102,14 +116,19 @@ class RuleMSXDemo:
         def __init__(self, field):
             #print("Initializing EMSXFieldDataPointSource for field: " + field.name())
             self.source = field
+            self.prev = None
             field.add_notification_handler(self.process_notification)
             
         def get_value(self):
             #print("GetValue of EMSXFieldDataPointSource for field: " + self.source.name())
             return self.source.value()
         
+        def get_prev(self):
+            return self.prev
+        
         def process_notification(self, notification):
             #print("SetValue of EMSXFieldDataPointSource for field: " + self.source.name())
+            self.prev.set_value(notification.field_changes[0].old_value)
             super().set_stale()
             
             
@@ -206,6 +225,7 @@ class RuleMSXDemo:
         new_dataset.add_datapoint("OrderNumber", self.EMSXFieldDataPointSource(r.field("EMSX_SEQUENCE")))
         new_dataset.add_datapoint("RouteID", self.EMSXFieldDataPointSource(r.field("EMSX_ROUTE_ID")))
         new_dataset.add_datapoint("Filled", self.EMSXFieldDataPointSource(r.field("EMSX_FILLED")))
+        new_dataset.add_datapoint("PrevFilled", self.GenericIntegerDataPointSource(0))
         new_dataset.add_datapoint("Amount", self.EMSXFieldDataPointSource(r.field("EMSX_AMOUNT")))
 
         self.rulemsx.rulesets["demoRouteRuleSet"].execute(new_dataset)
