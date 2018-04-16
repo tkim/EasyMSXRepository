@@ -1,47 +1,67 @@
-﻿using System.Collections.Generic;
+﻿/* Copyright 2017. Bloomberg Finance L.P.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to
+deal in the Software without restriction, including without limitation the
+rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+sell copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:  The above
+copyright notice and this permission notice shall be included in all copies
+or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+IN THE SOFTWARE.
+*/
+
+using System;
+using System.Collections.Generic;
 
 namespace com.bloomberg.samples.rulemsx {
 
-    public class Rule : RuleContainer {
+    public class Rule {
 
         private string name;
-        private RuleEvaluator evaluator;
-        private List<RuleAction> actions = new List<RuleAction>();
+        private RuleSet ruleSet;
+        private List<Action> ruleActions = new List<Action>();
+        private List<RuleCondition> ruleConditions = new List<RuleCondition>();
 
-        public Rule(string name, RuleEvaluator evaluator)
+        public Rule(RuleSet ruleSet, string name)
         {
             Log.LogMessage(Log.LogLevels.DETAILED, "Rule Constructor: " + name);
             this.name = name;
-            this.evaluator = evaluator;
+            this.ruleSet = ruleSet;
         }
 
-        public Rule(string name, RuleEvaluator evaluator, RuleAction action)
-        {
-            Log.LogMessage(Log.LogLevels.DETAILED, "Rule Constructor (with Action): " + name);
-            this.name = name;
-            this.evaluator = evaluator;
-            AddAction(action);
-        }
-
-        public void AddAction(RuleAction action)
-        {
-            Log.LogMessage(Log.LogLevels.DETAILED, "Adding action to Rule: " + name);
-            this.actions.Add(action);
-        }
 
         public string GetName()
         {
             return this.name;
         }
 
-        public RuleEvaluator GetEvaluator()
+        public List<Action> GetActions() 
         {
-            return this.evaluator;
+            return this.ruleActions;
         }
 
-        public List<RuleAction> GetActions()
+        public void AddRuleCondition(RuleCondition ruleCondition)
         {
-            return actions;
+            if (ruleCondition == null || name == "") throw new ArgumentException("RuleCondition cannot be null");
+            this.ruleConditions.Add(ruleCondition);
+        }
+        public void AddAction(Action action)
+        {
+            if (action == null || name == "") throw new ArgumentException("Action cannot be null");
+            this.ruleActions.Add(action);
+        }
+
+        internal List<RuleCondition> GetConditions()
+        {
+            return ruleConditions;
         }
     }
 }

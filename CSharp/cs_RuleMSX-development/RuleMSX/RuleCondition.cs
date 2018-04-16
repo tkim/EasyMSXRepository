@@ -18,56 +18,31 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 IN THE SOFTWARE.
 */
 
-using System.Collections.Generic;
+using System;
 
 namespace com.bloomberg.samples.rulemsx
 {
-    public class DataPoint
+
+    public class RuleCondition
     {
+        private String name;
+        private RuleEvaluator ruleEvaluator;
 
-        private string name;
-        private DataPointSource source;
-        private DataSet dataSet;
-
-        internal DataPoint(DataSet dataSet, string name)
+        public RuleCondition(string name, RuleEvaluator evaluator)
         {
-            Log.LogMessage(Log.LogLevels.DETAILED, "DataPoint constructor: " + name);
+            Log.LogMessage(Log.LogLevels.DETAILED, "RuleCondition constructor: " + name);
             this.name = name;
-            this.dataSet = dataSet;
+            this.ruleEvaluator = evaluator;
+            this.ruleEvaluator.SetCondition(this);
         }
-
-        internal DataPoint(DataSet dataSet, string name, DataPointSource source)
-        {
-            Log.LogMessage(Log.LogLevels.DETAILED, "DataPoint constructor: " + name);
-            this.name = name;
-            this.dataSet = dataSet;
-            this.SetDataPointSource(source);
-        }
-
         public string GetName()
         {
             return this.name;
         }
 
-        public void SetDataPointSource(DataPointSource source)
+        public RuleEvaluator GetEvaluator()
         {
-            source.SetDataPoint(this);
-            this.source = source;
-        }
-
-        public DataPointSource GetSource()
-        {
-            return this.source;
-        }
-
-        public DataSet GetDataSet()
-        {
-            return this.dataSet;
-        }
-
-        public object GetValue()
-        {
-            return this.source.GetValue();
+            return this.ruleEvaluator;
         }
     }
 }

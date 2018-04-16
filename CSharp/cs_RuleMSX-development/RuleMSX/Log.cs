@@ -33,6 +33,7 @@ namespace com.bloomberg.samples.rulemsx
         }
 
         public static LogLevels logLevel = LogLevels.NONE;
+        public static String logPrefix = "";
 
         public static void LogMessage(LogLevels level, string str)
         {
@@ -41,8 +42,8 @@ namespace com.bloomberg.samples.rulemsx
             if (level == LogLevels.DETAILED && logLevel == LogLevels.BASIC) return;
 
             DateTime date = DateTime.Now;
-            System.Console.WriteLine(date.ToString("yyyy/MM/dd HH:mm:ss.fff") + "\t" + str);
-
+            System.Console.WriteLine(DateTime.Now.ToString("yyyyMMddHHmmssfffzzz") + logPrefix + ": \t" + str);
+            
         }
 
     }

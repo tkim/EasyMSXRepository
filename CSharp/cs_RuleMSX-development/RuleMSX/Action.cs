@@ -16,32 +16,28 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 IN THE SOFTWARE.
-*/
-
-using System.Collections.Generic;
+.*/
 
 namespace com.bloomberg.samples.rulemsx
 {
-    public class DataPoint
+    public class Action
     {
+        string name;
+        ActionExecutor executor;
 
-        private string name;
-        private DataPointSource source;
-        private DataSet dataSet;
-
-        internal DataPoint(DataSet dataSet, string name)
+        internal Action(string name)
         {
-            Log.LogMessage(Log.LogLevels.DETAILED, "DataPoint constructor: " + name);
             this.name = name;
-            this.dataSet = dataSet;
+        }
+        internal Action(string name, ActionExecutor executor)
+        {
+            this.name = name;
+            this.AddExecutor(executor);
         }
 
-        internal DataPoint(DataSet dataSet, string name, DataPointSource source)
+        public void AddExecutor(ActionExecutor executor)
         {
-            Log.LogMessage(Log.LogLevels.DETAILED, "DataPoint constructor: " + name);
-            this.name = name;
-            this.dataSet = dataSet;
-            this.SetDataPointSource(source);
+            this.executor = executor;
         }
 
         public string GetName()
@@ -49,25 +45,9 @@ namespace com.bloomberg.samples.rulemsx
             return this.name;
         }
 
-        public void SetDataPointSource(DataPointSource source)
+        public ActionExecutor GetExecutor()
         {
-            source.SetDataPoint(this);
-            this.source = source;
-        }
-
-        public DataPointSource GetSource()
-        {
-            return this.source;
-        }
-
-        public DataSet GetDataSet()
-        {
-            return this.dataSet;
-        }
-
-        public object GetValue()
-        {
-            return this.source.GetValue();
+            return this.executor;
         }
     }
 }

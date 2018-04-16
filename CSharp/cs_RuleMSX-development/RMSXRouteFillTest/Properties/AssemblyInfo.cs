@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("RuleMSXNUnitIntegrationTest")]
+[assembly: AssemblyTitle("RMSXRouteFillTest")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Bloomberg LP")]
-[assembly: AssemblyProduct("RuleMSXNUnitIntegrationTest")]
-[assembly: AssemblyCopyright("Copyright © Bloomberg LP 2017")]
+[assembly: AssemblyProduct("RMSXRouteFillTest")]
+[assembly: AssemblyCopyright("Copyright © Bloomberg LP 2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("b95ef171-916b-4925-8933-738beccaef76")]
+[assembly: Guid("6e448de3-fb67-4c87-94fa-bf6ee56ae2a8")]
 
 // Version information for an assembly consists of the following four values:
 //
