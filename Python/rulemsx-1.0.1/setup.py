@@ -3,7 +3,7 @@ from distutils.core import setup
 setup(
     name = "rulemsx",
     packages = ["rulemsx"],
-    version = "1.0.0",
+    version = "1.0.1",
     description = "RuleMSX rule engine",
     author = "Richard Clegg",
     author_email = "rclegg2@bloomberg.net",

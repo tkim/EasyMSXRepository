@@ -3,7 +3,7 @@ from distutils.core import setup
 setup(
     name = "easymsx",
     packages = ["easymsx"],
-    version = "1.0.0",
+    version = "1.0.1",
     description = "EasyMSX caching model",
     author = "Richard Clegg",
     author_email = "rclegg2@bloomberg.net",
