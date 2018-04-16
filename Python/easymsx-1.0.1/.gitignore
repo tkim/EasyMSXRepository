@@ -1,0 +1,4 @@
+/build/
+/dist/
+/easymsx/__pycache__
+/easymsx/tests/__pycache__

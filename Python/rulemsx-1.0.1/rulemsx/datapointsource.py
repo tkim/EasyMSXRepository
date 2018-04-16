@@ -7,8 +7,8 @@ import logging
 
 class DataPointSource:
     
-    def __init__(self):
-        
+    def init(self):
+
         logging.info("Initializing DataPointSource")
 
         self.datapoint  = None
@@ -21,6 +21,11 @@ class DataPointSource:
         
         logging.info("Setting DataPoint for DataPointSource: " + datapoint.name)
 
+        try:
+            self.datapoint
+        except:
+            self.init()
+
         self.datapoint = datapoint
         
     
@@ -29,10 +34,11 @@ class DataPointSource:
         logging.info("Get DataPointSource DataPoint for : " + self.datapoint.name)
 
         try:
-            return self.datapoint
+            self.datapoint
         except:
-            self.datapoint=None
-            return self.datapoint
+            self.init()
+
+        return self.datapoint
     
     def get_value(self):
         
@@ -43,31 +49,33 @@ class DataPointSource:
     
     def set_stale(self):
         
-        logging.info("Set DataPointSource stale for DataPoint: " + self.datapoint.name)
+        logging.info("Set Stale called for DataPoint: " + self.datapoint.name)
+        
+        try:
+            self.datapoint
+        except:
+            self.init()
         
         self.is_stale = True
-        try:
-            logging.info("Checking DataPointSource associated working rule for DataPoint: " + self.datapoint.name)
 
-            for ar in self.associated_working_rules:
-                logging.info("Call to enqueue WorkingRule for RuleSet: " + ar.ruleset.name + " and DataSet: " + ar.dataset.name)
-                ar.enqueue_working_rule()
-        except:
-            #ignore
-            self.associated_working_rules = []
+        logging.info("Enqueuing all associated working rules for DataPoint: " + self.datapoint.name)
 
-        logging.info("Set DataPointSource stale for DataPoint: " + self.datapoint.name + " complete")
-    
+        for ar in self.associated_working_rules:
+            ar.enqueue_working_rule()
+
+        logging.info("Set Stale complete for DataPoint: " + self.datapoint.name)
+
+
     def associate_working_rule(self,working_rule):
 
         logging.info("Associate WorkingRule for Rule: " + working_rule.rule.name + " of RuleSet: " + working_rule.rule.ruleset.name + " and DataSet: " + working_rule.dataset.name)
 
         try:
-            self.associated_working_rules.append(working_rule)
+            self.datapoint
         except:
-            self.associated_working_rules = []
-            self.associated_working_rules.append(working_rule)
+            self.init()
 
+        self.associated_working_rules.append(working_rule)
 
 __copyright__ = """
 Copyright 2017. Bloomberg Finance L.P.

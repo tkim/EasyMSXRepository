@@ -16,16 +16,9 @@ class Action:
         self.action_executor = executor
 
         logging.info("Initialized Action: " + name)
-        
+          
     def execute(self, dataset):
-
-        logging.info("Executing Action: " + self.name + " with dataSet: " + dataset.name)
-
-        if not self.action_executor == None:
-            logging.info("Calling Action executor")
-            self.action_executor.execute(dataset)
-            logging.info("Called Action executor")
-            
+        raise NotImplementedError("The execute function of an Action must be overridden")
 
         
 __copyright__ = """

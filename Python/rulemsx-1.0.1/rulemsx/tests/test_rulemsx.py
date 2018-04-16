@@ -156,6 +156,7 @@ class TestRuleMSX(unittest.TestCase):
             super().add_dependent_datapoint_name(datapoint_name)
             
         def evaluate(self,dataset):
+            print("evaluator called with dataset: " + dataset.name)
             val = dataset.datapoints[self.datapoint_name].get_value()
             res = val==self.target
             print("Condition >> Evaluating: %s = %s \treturning: %s" % (val, self.target, res))
@@ -167,9 +168,9 @@ class TestRuleMSX(unittest.TestCase):
             self.strval = some_string
             self.mod_datapoint_name = mod_datapoint_name
             
-        def execute(self,dataset):
-            dataset.datapoints[self.mod_datapoint_name].datapoint_source.set_value("XtestvalueX")
-            print("Action Execute: %s" % (self.strval))
+        #def execute(self,dataset):
+        #    dataset.datapoints[self.mod_datapoint_name].datapoint_source.set_value("XtestvalueX")
+        #    print("Action Execute: %s" % (self.strval))
             
     def test_integration_TestRuleSet01(self):
         

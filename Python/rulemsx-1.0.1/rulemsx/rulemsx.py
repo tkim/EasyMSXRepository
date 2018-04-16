@@ -1,9 +1,19 @@
-'''
-Created on 25 Nov 2017
+"""
+.. module:: rulemsx
+   :platform: Unix, Windows
+   :synopsis: RuleMSX rule engine
 
-@author: RCLEGG2@BLOOMBERG.NET
+RuleMSX is designed for integration with the Bloomberg API using EasyMSX 
+and EasyMSX to build applications around a set of user defined rules,
+conditions and actions. It can also be used in a standalone fashion 
+without connectivity to Bloomberg.
 
-'''
+This version requires Python 3 or later
+
+.. moduleauthor:: Richard Clegg <rclegg2@bloomberg.net>
+
+"""
+
 import logging
 from .dataset import DataSet
 from .ruleset import RuleSet
@@ -25,6 +35,20 @@ class RuleMSX:
         logging.basicConfig(level=lvl)
 
     def create_dataset(self,name):
+        
+        """ Create a new dataset object and add it to the dataset collection
+
+        Args:
+           name (str):  The name of the new dataset
+
+        Returns:
+           str.  The new dataset object
+
+        Raises:
+            ValueError
+            
+        The name cannot be None or empty
+        """
         
         if(name is None or name == ""):
             raise ValueError("DataSet name cannot be none or empty")

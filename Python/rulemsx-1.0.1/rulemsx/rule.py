@@ -29,17 +29,6 @@ class Rule:
         self.rule_conditions.append(rule_condition)
         
     
-    def evaluate(self):
-        
-        logging.info("Evaluating Rule: " + self.name + " in RuleSet: " + self.ruleset.name)
-
-        for rc in self.rule_conditions:
-            
-            if not rc.evaluate():
-                return False
-            
-        return True
-    
     def add_action(self,rule_action):
         
         logging.info("Add Action: " + rule_action.name + " to Rule: " + self.name + " in RuleSet: " + self.ruleset.name)

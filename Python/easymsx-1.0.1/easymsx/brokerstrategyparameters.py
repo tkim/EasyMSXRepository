@@ -31,9 +31,9 @@ class BrokerStrategyParameters:
         if msg.messageType() == ERROR_INFO:
             error_code = msg.getElementAsInteger("ERROR_CODE")
             error_message = msg.getElementAsString("ERROR_MESSAGE")
-            if ":2" not in error_message: # fix for issue with Strategies having 0 parameters
-                print("GetBrokerStrategyInfoWithAssetClass >> ERROR CODE: %d\tERROR MESSAGE: %s" % (error_code,error_message))
-
+            #if ":2" not in error_message: # fix for issue with Strategies having 0 parameters
+                #print("GetBrokerStrategyInfoWithAssetClass >> ERROR CODE: %d\tERROR MESSAGE: %s" % (error_code,error_message))
+                #print("Msg: " + str(msg))
         elif msg.messageType() == GET_BROKER_STRATEGY_INFO:
             
             params = msg.getElement("EMSX_STRATEGY_INFO")

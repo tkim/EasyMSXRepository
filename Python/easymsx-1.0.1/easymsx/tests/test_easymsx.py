@@ -92,8 +92,6 @@ class TestEasyMSX(unittest.TestCase):
             req.set("EMSX_HAND_INSTRUCTION", "ANY")
             req.set("EMSX_SIDE", "BUY")
             
-            self.pending_result=True
-            
             msg = emsx.send_request(req)
 
             if msg.messageType()=="ErrorInfo":

@@ -5,6 +5,9 @@ Created on 28 Nov 2017
 '''
 
 import logging
+import threading
+
+lock = threading.Lock()
 
 class RuleEvaluator:
     
@@ -21,11 +24,12 @@ class RuleEvaluator:
         except:
             logging.info("Add dependent DataPoint name: " + datapoint_name + " for RuleCondition: unknown")
             
-        try:
-            self.dependent_datapoint_names.append(datapoint_name)
-        except:
-            self.dependent_datapoint_names = []
-            self.dependent_datapoint_names.append(datapoint_name)
+        with lock:
+            try:
+                self.dependent_datapoint_names.append(datapoint_name)
+            except:
+                self.dependent_datapoint_names = []
+                self.dependent_datapoint_names.append(datapoint_name)
 
 
 __copyright__ = """

@@ -43,7 +43,7 @@ class ExecutionAgent:
             
                     
                 while len(self.openset_queue) > 0:
-                    
+                          
                     logging.info("WorkingAgent for: " + self.execagent.ruleset.name + " iteration count: " + str(iteration_count))
                     
                     with self.lock:
@@ -88,7 +88,7 @@ class ExecutionAgent:
                 logging.info("Enqueue WorkingRule for Rule: " + wr.rule.name + " of RuleSet: " + wr.rule.ruleset.name + " and DataSet: " + wr.dataset.name)
                 self.openset_queue.append(wr)
             else:
-                logging.info("Not Enqueuing WorkingRule for RuleSet: " + wr.ruleset.name + " and DataSet: " + wr.dataset.name + " as it is already in queue")
+                logging.info("Not Enqueuing WorkingRule for Rule: " + wr.rule.name + " of RuleSet: " + wr.rule.ruleset.name + " and DataSet: " + wr.dataset.name + " - already in open set.")
                 
 
     def __init__(self, ruleset, dataset=None):
