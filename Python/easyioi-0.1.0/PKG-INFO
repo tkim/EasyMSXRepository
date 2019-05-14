@@ -1,0 +1,26 @@
+Metadata-Version: 1.1
+Name: easymkt
+Version: 0.1.0
+Summary: EasyMKT caching model
+Home-page: https://github.com/tkim/EasyMSXRepository/tree/master/Python/easyioi-0.1.0
+Author: Terrence C. Kim
+Author-email: tkim94@bloomberg.net
+License: UNKNOWN
+Description: EasyIOI
+        -------
+        
+        EasyIOI is designed for integration with the Bloomberg API and 
+        the Market Data service. It provides a local cache of for market
+        data field values.
+        
+        This version requires Python 3 or later
+        
+Keywords: Bloomberg API,blpapi,mktdata,market data
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Development Status :: Alpha
+Classifier: Environment :: Other Environment
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
