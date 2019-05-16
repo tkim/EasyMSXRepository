@@ -4,17 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{94A9B553-6A44-4D2E-A8E4-5DEA977BF9F0}</ProjectGuid>
+    <ProjectGuid>{787BFCFA-A2E8-44C5-A373-149305377E7C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>EasyMKT</RootNamespace>
-    <AssemblyName>EasyMKT</AssemblyName>
+    <RootNamespace>RuleMSX</RootNamespace>
+    <AssemblyName>RuleMSX</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -32,32 +29,28 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject />
-  </PropertyGroup>
   <ItemGroup>
-    <Compile Include="EasyMKT.cs" />
-    <Compile Include="Field.cs" />
-    <Compile Include="FieldChange.cs" />
-    <Compile Include="Fields.cs" />
+    <Compile Include="Action.cs" />
+    <Compile Include="DataPoint.cs" />
+    <Compile Include="DataPointSource.cs" />
+    <Compile Include="DataSet.cs" />
     <Compile Include="Log.cs" />
-    <Compile Include="MessageHandler.cs" />
-    <Compile Include="Notification.cs" />
-    <Compile Include="NotificationHandler.cs" />
+    <Compile Include="Rule.cs" />
+    <Compile Include="ActionExecutor.cs" />
+    <Compile Include="RuleContainer.cs" />
+    <Compile Include="RuleEvaluator.cs" />
+    <Compile Include="RuleEventHandler.cs" />
+    <Compile Include="RuleMSX.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Securities.cs" />
-    <Compile Include="Security.cs" />
-    <Compile Include="SubscriptionField.cs" />
-    <Compile Include="SubscriptionFields.cs" />
+    <Compile Include="RuleSet.cs" />
+    <Compile Include="WorkingRule.cs" />
+    <Compile Include="ExecutionAgent.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="Bloomberglp.Blpapi">
-      <HintPath>..\..\..\..\..\..\..\..\..\blp\DAPI\APIv3\DotnetAPI\v3.8.9.2\lib\Bloomberglp.Blpapi.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="rmsx2.odg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

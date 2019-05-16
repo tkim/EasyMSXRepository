@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{1247DD23-D615-4CD6-B413-D1416C25979A}</ProjectGuid>
+    <ProjectGuid>{E84EA7BE-3B3F-426A-9F4F-C0EE82ED7327}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>EasyMSX</RootNamespace>
-    <AssemblyName>EasyMSX</AssemblyName>
+    <RootNamespace>EasyIOI</RootNamespace>
+    <AssemblyName>EasyIOI</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -36,47 +36,25 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Bloomberglp.Blpapi">
-      <HintPath>..\..\..\..\..\..\..\..\..\blp\DAPI\APIv3\DotnetAPI\v3.8.9.2\lib\Bloomberglp.Blpapi.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Broker.cs" />
-    <Compile Include="Brokers.cs" />
-    <Compile Include="BrokerStrategies.cs" />
-    <Compile Include="BrokerStrategy.cs" />
-    <Compile Include="BrokerStrategyParameter.cs" />
-    <Compile Include="BrokerStrategyParameters.cs" />
-    <Compile Include="EasyMSX.cs" />
+    <Compile Include="EasyIOI.cs" />
     <Compile Include="Field.cs" />
-    <Compile Include="FieldChange.cs" />
     <Compile Include="Fields.cs" />
-    <Compile Include="FieldsOwner.cs" />
+    <Compile Include="IOI.cs" />
+    <Compile Include="IOIs.cs" />
     <Compile Include="Log.cs" />
     <Compile Include="MessageHandler.cs" />
     <Compile Include="Notification.cs" />
     <Compile Include="NotificationHandler.cs" />
-    <Compile Include="Order.cs" />
-    <Compile Include="Orders.cs" />
-    <Compile Include="OrderSubscriptionHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Route.cs" />
-    <Compile Include="Routes.cs" />
-    <Compile Include="RouteSubscriptionHandler.cs" />
-    <Compile Include="SchemaFieldDefinition.cs" />
-    <Compile Include="Team.cs" />
-    <Compile Include="Teams.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Bloomberglp.Blpapi">
+      <HintPath>..\..\..\..\..\..\..\..\..\blp\DAPI\APIv3\DotnetAPI\v3.8.9.2\lib\Bloomberglp.Blpapi.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
