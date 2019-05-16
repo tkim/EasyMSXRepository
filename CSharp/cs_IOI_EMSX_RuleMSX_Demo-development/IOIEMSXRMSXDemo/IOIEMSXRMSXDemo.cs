@@ -86,7 +86,7 @@ namespace IOIEMSXRMSXDemo
 
             log("Initializing RuleMSX...");
             this.rmsx = new RuleMSX();
-            LogRmsx.logLevel = LogRmsx.LogLevels.NONE;
+            LogRmsx.logLevel = LogRmsx.LogLevels.DETAILED;
             LogRmsx.logPrefix = "(RuleMSX...)";
 
             log("RuleMSX initialized.");
@@ -96,7 +96,7 @@ namespace IOIEMSXRMSXDemo
             log("EasyIOI initialized.");
 
             LogIOI.logPrefix = "(EasyIOI...)";
-            LogIOI.logLevel = com.bloomberg.ioiapi.samples.Log.LogLevels.NONE;
+            LogIOI.logLevel = com.bloomberg.ioiapi.samples.Log.LogLevels.DETAILED;
 
             log("Initializing EasyMSX...");
             this.emsx = new EasyMSX();
@@ -190,6 +190,7 @@ namespace IOIEMSXRMSXDemo
                 //Create conflict set with all current orders.
                 IOI i = notification.GetIOI();
 
+                log(i.field("ioi_instrument_stock_security_ticker").Value());
                 log("Creating conflict set for IOI: " + i.field("id_value").Value().ToString());
 
                 foreach (Order o in emsx.orders)

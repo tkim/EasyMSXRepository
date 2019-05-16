@@ -41,16 +41,16 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Bloomberglp.Blpapi">
-      <HintPath>..\..\..\..\..\..\blp\DAPI\APIv3\DotnetAPI\v3.8.9.2\lib\Bloomberglp.Blpapi.dll</HintPath>
+      <HintPath>C:\blp\DAPI\APIv3\DotnetAPI\v3.8.9.2\lib\Bloomberglp.Blpapi.dll</HintPath>
     </Reference>
     <Reference Include="EasyIOI">
-      <HintPath>..\..\cs_EasyIOI\EasyIOI\bin\Debug\EasyIOI.dll</HintPath>
+      <HintPath>..\..\cs_EasyIOI-development\EasyIOI\bin\Debug\EasyIOI.dll</HintPath>
     </Reference>
     <Reference Include="EasyMSX">
-      <HintPath>..\..\emsxapi_cs_EasyMSX\EasyMSX\bin\Debug\EasyMSX.dll</HintPath>
+      <HintPath>..\..\cs_EasyMSXCSharp-Development\EasyMSX\bin\Debug\EasyMSX.dll</HintPath>
     </Reference>
     <Reference Include="RuleMSX">
-      <HintPath>..\..\cs_RuleMSX\RuleMSX\bin\Debug\RuleMSX.dll</HintPath>
+      <HintPath>..\..\cs_RuleMSX-development\RuleMSX\bin\Debug\RuleMSX.dll</HintPath>
     </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
